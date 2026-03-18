@@ -6,12 +6,42 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const mapelList = [
+    { pelajaran: 'Bahasa Inggris, IPA Biologi, IPA Fisika, Bahasa Indonesia, PJOK' },
+    { pelajaran: 'Informatika, Pendidikan Pancasila, Prakarya, PAI, IPA Fisika' },
+    { pelajaran: 'Pendidikan Pancasila, IPS, Matematika, PAI' },
+    { pelajaran: 'PJOK, Bahasa Indonesia, Informatika, Matematika, Bahasa Inggris' },
+    { pelajaran: 'Bahasa Indonesia, IPS' }
+];
 let pr = 'Belum ada pengumuman hari ini.';
+const piketList = [
+    { siswa: 'Ahmad, Al Fathir, Amira, Anindiya, Annisa, Ariq, Atila, Tira' },
+    { siswa: 'Husna, Cylla, Daffa N., Dafin, Faiz, Firly, Gavyn, Geysa, Umi' },
+    { siswa: 'Hazel, Jasmine, Kaelo, Khatir, Kheyla, Azzam, Lolita, M. Daffa, Vidi' },
+    { siswa: 'Malihah, Iqbal, Al Daffa, Nur Azani, Nurizq, Rozarro, Nabila, Nafeesha, Zibran' },
+    { siswa: 'Namira, Naufal S., Naufal L., Putri, Raden Ayu, Raffael, Sachi, Syahva, Syakira' },
+]
 let note = 'Tidak ada catatan tambahan hari ini.';
 
+function getDayIndex() {
+    return (new Date().getDay() + 6) % 7;
+}
+
 app.get('/api/pengumuman', (req, res) => {
+    const todayIndex = getDayIndex();
+    const tomorrowIndex = (todayIndex + 1) % 7;
+
+    if (tomorrowIndex > 4) {
+        return res.status(200).json({
+            mapel: 'Liburrrr 🎉', pr: 'Libur oi', piket: 'Piketla sendirik 😭', note: 'Selamat beristirahat!'
+        });
+    }
+
+    const mapel = mapelList[tomorrowIndex].pelajaran;
+    const piket = piketList[tomorrowIndex].siswa;
+
     res.status(200).json({
-        pr: pr, note: note
+        mapel: mapel, pr: pr, piket: piket, note: note
     });
 });
 
