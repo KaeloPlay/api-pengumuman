@@ -13,7 +13,7 @@ const mapelList = [
     { pelajaran: 'PJOK, Bahasa Indonesia, Informatika, Matematika, Bahasa Inggris' },
     { pelajaran: 'Bahasa Indonesia, IPS' }
 ];
-let pr = 'Belum ada pengumuman hari ini.';
+let pr = 'Belum ada informasi PR untuk esok hari.';
 const piketList = [
     { siswa: 'Ahmad, Al Fathir, Amira, Anindiya, Annisa, Ariq, Atila, Tira' },
     { siswa: 'Husna, Cylla, Daffa N., Dafin, Faiz, Firly, Gavyn, Geysa, Umi' },
@@ -21,7 +21,7 @@ const piketList = [
     { siswa: 'Malihah, Iqbal, Al Daffa, Nur Azani, Nurizq, Rozarro, Nabila, Nafeesha, Zibran' },
     { siswa: 'Namira, Naufal S., Naufal L., Putri, Raden Ayu, Raffael, Sachi, Syahva, Syakira' },
 ]
-let note = 'Tidak ada catatan tambahan hari ini.';
+let note = 'Belum ada informasi tambahan untuk esok hari.';
 
 function getDayIndex() {
     return (new Date().getDay() + 6) % 7;
