@@ -41,16 +41,27 @@ app.get('/api/pengumuman', (req, res) => {
         now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
     );
 
+    let tanggalFix;
     const hour = jakartaTime.getHours();
     if (hour >= 7) {
         tomorrowIndex = (todayIndex + 1) % 7;
+        const besok = new Date(
+            new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
+        );
+        besok.setDate(besok.getDate() + 1);
+
+        tanggalFix = besok.toLocaleDateString('id-ID');
     } else {
         tomorrowIndex = todayIndex;
+        
+        tanggalFix = new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
+        ).toLocaleDateString('id-ID');
     };
 
     if (tomorrowIndex > 4) {
         return res.status(200).json({
-            mapel: 'Liburrrr 🎉', pr: 'Libur oi', piket: 'Piketla sendirik 😭', note: 'Selamat beristirahat!'
+            tanggal: tanggalFix, mapel: 'Liburrrr 🎉', pr: 'Libur oi', piket: 'Piketla sendirik 😭', note: 'Selamat beristirahat!'
         });
     };
 
