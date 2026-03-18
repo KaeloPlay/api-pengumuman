@@ -69,7 +69,7 @@ app.get('/api/pengumuman', (req, res) => {
     const piket = piketList[tomorrowIndex].siswa;
 
     res.status(200).json({
-        mapel: mapel, pr: pr, piket: piket, note: note
+        tanggal: tanggalFix, mapel: mapel, pr: pr, piket: piket, note: note
     });
 });
 
