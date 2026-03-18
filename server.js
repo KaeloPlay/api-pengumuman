@@ -24,14 +24,24 @@ const piketList = [
 let note = 'Belum ada informasi tambahan untuk esok hari.';
 
 function getDayIndex() {
-    return (new Date().getDay() + 6) % 7;
+    const now = new Date();
+    const jakartaTime = new Date(
+        now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
+    );
+
+    return (jakartaTime.getDay() + 6) % 7;
 }
 
 app.get('/api/pengumuman', (req, res) => {
     const todayIndex = getDayIndex();
     let tomorrowIndex;
 
-    const hour = new Date().getHours();
+    const now = new Date();
+    const jakartaTime = new Date(
+        now.toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
+    );
+
+    const hour = jakartaTime.getHours();
     if (hour >= 7) {
         tomorrowIndex = (todayIndex + 1) % 7;
     } else {
