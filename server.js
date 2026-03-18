@@ -29,13 +29,20 @@ function getDayIndex() {
 
 app.get('/api/pengumuman', (req, res) => {
     const todayIndex = getDayIndex();
-    const tomorrowIndex = (todayIndex + 1) % 7;
+    let tomorrowIndex;
+
+    const hour = new Date().getHours();
+    if (hour >= 7) {
+        tomorrowIndex = (todayIndex + 1) % 7;
+    } else {
+        tomorrowIndex = todayIndex;
+    };
 
     if (tomorrowIndex > 4) {
         return res.status(200).json({
             mapel: 'Liburrrr 🎉', pr: 'Libur oi', piket: 'Piketla sendirik 😭', note: 'Selamat beristirahat!'
         });
-    }
+    };
 
     const mapel = mapelList[tomorrowIndex].pelajaran;
     const piket = piketList[tomorrowIndex].siswa;
