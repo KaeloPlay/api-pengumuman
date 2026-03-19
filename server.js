@@ -52,6 +52,8 @@ app.get('/api/pengumuman', (req, res) => {
 
         tanggalFix = besok.toLocaleDateString('id-ID');
     } else {
+        pr = 'Belum ada informasi PR untuk esok hari.';
+        note = 'Belum ada informasi tambahan untuk esok hari.';
         tomorrowIndex = todayIndex;
         
         tanggalFix = new Date(
