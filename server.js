@@ -3,6 +3,7 @@ const cors = require('cors');
 const port = process.env.PORT || 3000;
 const app = express();
 const libur = false;
+let reset = false;
 
 app.use(cors());
 app.use(express.json());
@@ -45,6 +46,13 @@ app.get('/api/pengumuman', (req, res) => {
     let tanggalFix;
     const hour = jakartaTime.getHours();
     if (hour >= 7) {
+        if (reset === true) {
+            pr = 'Belum ada informasi PR untuk esok hari.';
+            note = 'Belum ada informasi tambahan untuk esok hari.';
+
+            reset = false;
+        }
+        
         tomorrowIndex = (todayIndex + 1) % 7;
         const besok = new Date(
             new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })
@@ -53,8 +61,7 @@ app.get('/api/pengumuman', (req, res) => {
 
         tanggalFix = besok.toLocaleDateString('id-ID');
     } else {
-        pr = 'Belum ada informasi PR untuk esok hari.';
-        note = 'Belum ada informasi tambahan untuk esok hari.';
+        reset = true;
         tomorrowIndex = todayIndex;
         
         tanggalFix = new Date(
