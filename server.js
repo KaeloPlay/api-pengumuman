@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const port = process.env.PORT || 3000;
 const app = express();
+const libur = true;
 
 app.use(cors());
 app.use(express.json());
@@ -61,7 +62,7 @@ app.get('/api/pengumuman', (req, res) => {
         ).toLocaleDateString('id-ID');
     };
 
-    if (tomorrowIndex > 4) {
+    if (tomorrowIndex > 4 || libur === true) {
         return res.status(200).json({
             tanggal: tanggalFix, mapel: 'Liburrrr 🎉', pr: 'Libur oi', piket: 'Piketla sendirik 😭', note: 'Selamat beristirahat!'
         });
