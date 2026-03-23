@@ -71,7 +71,7 @@ app.get('/api/pengumuman', (req, res) => {
 
     if (tomorrowIndex > 4 || libur === true) {
         return res.status(200).json({
-            tanggal: tanggalFix, mapel: 'Liburrrr 🎉', pr: pr, piket: 'Piketla sendirik 😭', note: note
+            tanggal: tanggalFix, mapel: 'Liburrrr 🎉', pr: 'Libur hey', piket: 'Piketla sendirik 😭', note: 'Ye selamat istirahat.'
         });
     };
 
